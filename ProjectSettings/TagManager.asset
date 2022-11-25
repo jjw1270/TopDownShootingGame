@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Up
+  - Down
+  - Right
+  - Left
+  - CurrentMap
+  - UR
+  - DR
+  - UL
+  - DL
+  - DeleteMap
   layers:
   - Default
   - TransparentFX
@@ -11,7 +21,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Map
   - 
   - 
   - 
