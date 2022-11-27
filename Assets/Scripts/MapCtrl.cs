@@ -4,74 +4,132 @@ using UnityEngine;
 
 public class MapCtrl : MonoBehaviour
 {
-    public GameObject map;
+    public GameObject mapPool;
+    public Transform[] maps = new Transform[10];
+    public Transform[] tmpMaps = new Transform[10];
     public Transform currentMap;
-    private Vector3 nextMapPos;
-    public List<Transform> allMap = new List<Transform>();
 
     private void Start() {
-        
+        maps = mapPool.GetComponentsInChildren<Transform>();
+        maps.CopyTo(tmpMaps, 0);
+        //tmpMaps = (Transform[])maps.Clone();
     }
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.layer != LayerMask.NameToLayer("Map"))
             return;
 
-        if(other.CompareTag("CurrentMap")){
-            currentMap = other.transform.parent;
+        currentMap = other.transform;
+        maps.CopyTo(tmpMaps, 0);
 
-            if(allMap.Count == 0){
-                Debug.Log("a");
-                allMap.Add(currentMap);
-                return;
-            }
-            return;
+        switch(other.transform.GetSiblingIndex()+1){
+            case 1:
+                tmpMaps[1] = maps[9];
+                tmpMaps[2] = maps[6];
+                tmpMaps[3] = maps[3];
+                tmpMaps[4] = maps[8];
+                tmpMaps[5] = maps[1];
+                tmpMaps[6] = maps[2];
+                tmpMaps[7] = maps[7];
+                tmpMaps[8] = maps[4];
+                tmpMaps[9] = maps[5];
+                break;
+            case 2:
+                tmpMaps[1] = maps[7];
+                tmpMaps[2] = maps[8];
+                tmpMaps[3] = maps[9];
+                tmpMaps[4] = maps[1];
+                tmpMaps[5] = maps[2];
+                tmpMaps[6] = maps[3];
+                tmpMaps[7] = maps[4];
+                tmpMaps[8] = maps[5];
+                tmpMaps[9] = maps[6];
+                break;
+            case 3:
+                tmpMaps[1] = maps[1];
+                tmpMaps[2] = maps[4];
+                tmpMaps[3] = maps[7];
+                tmpMaps[4] = maps[2];
+                tmpMaps[5] = maps[3];
+                tmpMaps[6] = maps[8];
+                tmpMaps[7] = maps[5];
+                tmpMaps[8] = maps[6];
+                tmpMaps[9] = maps[9];
+                break;
+            case 4:
+                tmpMaps[1] = maps[3];
+                tmpMaps[2] = maps[1];
+                tmpMaps[3] = maps[2];
+                tmpMaps[4] = maps[6];
+                tmpMaps[5] = maps[4];
+                tmpMaps[6] = maps[5];
+                tmpMaps[7] = maps[9];
+                tmpMaps[8] = maps[7];
+                tmpMaps[9] = maps[8];
+                break;
+            case 5:
+                break;
+            case 6:
+                tmpMaps[1] = maps[2];
+                tmpMaps[2] = maps[3];
+                tmpMaps[3] = maps[1];
+                tmpMaps[4] = maps[5];
+                tmpMaps[5] = maps[6];
+                tmpMaps[6] = maps[4];
+                tmpMaps[7] = maps[8];
+                tmpMaps[8] = maps[9];
+                tmpMaps[9] = maps[7];
+                break;
+            case 7:
+                tmpMaps[1] = maps[1];
+                tmpMaps[2] = maps[4];
+                tmpMaps[3] = maps[5];
+                tmpMaps[4] = maps[2];
+                tmpMaps[5] = maps[7];
+                tmpMaps[6] = maps[8];
+                tmpMaps[7] = maps[3];
+                tmpMaps[8] = maps[6];
+                tmpMaps[9] = maps[9];
+                break;
+            case 8:
+                tmpMaps[1] = maps[4];
+                tmpMaps[2] = maps[5];
+                tmpMaps[3] = maps[6];
+                tmpMaps[4] = maps[7];
+                tmpMaps[5] = maps[8];
+                tmpMaps[6] = maps[9];
+                tmpMaps[7] = maps[1];
+                tmpMaps[8] = maps[2];
+                tmpMaps[9] = maps[3];
+                break;
+            case 9:
+                tmpMaps[1] = maps[5];
+                tmpMaps[2] = maps[6];
+                tmpMaps[3] = maps[3];
+                tmpMaps[4] = maps[8];
+                tmpMaps[5] = maps[9];
+                tmpMaps[6] = maps[2];
+                tmpMaps[7] = maps[7];
+                tmpMaps[8] = maps[4];
+                tmpMaps[9] = maps[1];
+                break;
         }
+
+        maps = (Transform[])tmpMaps.Clone();
         
-        if(other.CompareTag("DeleteMap")){
-            if(allMap.Count == 0)
-                return;
-
-            for(int i = allMap.Count - 1; i >= 0; i--){
-                Debug.Log("aa");
-                if(allMap[i] != currentMap){
-                    Debug.Log("aaa");
-                    Destroy(allMap[i].gameObject);
-                    allMap.RemoveAt(i);
-                }
-            }
-            return;
+        for(int i = 1; i < 10; i++){
+            maps[i].SetSiblingIndex(i);
         }
 
-        if(other.transform.parent != currentMap) return;
+        maps[1].position = new Vector3(currentMap.position.x-100, 0, currentMap.position.z+100);
+        maps[2].position = new Vector3(currentMap.position.x, 0, currentMap.position.z+100);
+        maps[3].position = new Vector3(currentMap.position.x+100, 0, currentMap.position.z+100);
 
-        switch(other.tag){
-            case "Up":
-                nextMapPos = new Vector3(currentMap.position.x, 0, currentMap.position.z+500);
-                break;
-            case "Down":
-                nextMapPos = new Vector3(currentMap.position.x, 0, currentMap.position.z-500);
-                break;
-            case "Left":
-                nextMapPos = new Vector3(currentMap.position.x-500, 0, currentMap.position.z);
-                break;
-            case "Right":
-                nextMapPos = new Vector3(currentMap.position.x+500, 0, currentMap.position.z);
-                break;
-            case "UR":
-                nextMapPos = new Vector3(currentMap.position.x+500, 0, currentMap.position.z+500);
-                break;
-            case "DR":
-                nextMapPos = new Vector3(currentMap.position.x+500, 0, currentMap.position.z-500);
-                break;
-            case "UL":
-                nextMapPos = new Vector3(currentMap.position.x-500, 0, currentMap.position.z+500);
-                break;
-            case "DL":
-                nextMapPos = new Vector3(currentMap.position.x-500, 0, currentMap.position.z-500);
-                break;
-        }
-        Transform nextMap = Instantiate(map, nextMapPos, Quaternion.identity).transform;
-        allMap.Add(nextMap);
+        maps[4].position = new Vector3(currentMap.position.x-100, 0, currentMap.position.z);
+        maps[6].position = new Vector3(currentMap.position.x+100, 0, currentMap.position.z);
+
+        maps[7].position = new Vector3(currentMap.position.x-100, 0, currentMap.position.z-100);
+        maps[8].position = new Vector3(currentMap.position.x, 0, currentMap.position.z-100);
+        maps[9].position = new Vector3(currentMap.position.x+100, 0, currentMap.position.z-100);
     }
 }

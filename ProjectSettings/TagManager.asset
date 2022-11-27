@@ -4,16 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Up
-  - Down
-  - Right
-  - Left
-  - CurrentMap
-  - UR
-  - DR
-  - UL
-  - DL
-  - DeleteMap
+  - Map1
+  - Map2
+  - Map3
+  - Map4
+  - Map5
+  - Map6
+  - Map7
+  - Map8
+  - Map9
   layers:
   - Default
   - TransparentFX
