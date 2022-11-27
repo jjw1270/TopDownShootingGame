@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2478891771597787956}
   - component: {fileID: 396947505984137214}
   - component: {fileID: 1175011611852574326}
+  - component: {fileID: 1016891636398450674}
   m_Layer: 0
   m_Name: tree-scary-dead
   m_TagString: Untagged
@@ -98,3 +99,15 @@ CapsuleCollider:
   m_Height: 5.619212
   m_Direction: 1
   m_Center: {x: -0.13509977, y: 0.90820116, z: -0.035416126}
+--- !u!114 &1016891636398450674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198532698984072747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219e5d606f429fe4ebcf46f5028b6ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

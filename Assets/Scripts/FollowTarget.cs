@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CamCtrl : MonoBehaviour
+public class FollowTarget : MonoBehaviour
 {
     public Transform target;
     public Vector3 offset;

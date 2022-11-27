@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3790084515910209206}
   - component: {fileID: 1404527701374122620}
   - component: {fileID: 674659313560141226}
+  - component: {fileID: 4481696511987603854}
   m_Layer: 0
   m_Name: tree-poplar-dead-a
   m_TagString: Untagged
@@ -98,3 +99,15 @@ CapsuleCollider:
   m_Height: 4.1925745
   m_Direction: 1
   m_Center: {x: 0.017145038, y: 1.1146379, z: -0.018260837}
+--- !u!114 &4481696511987603854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611679142868818857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219e5d606f429fe4ebcf46f5028b6ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

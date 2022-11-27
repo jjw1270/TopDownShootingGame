@@ -1,26 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MapCtrl : MonoBehaviour
 {
     public GameObject mapPool;
-    public Transform[] maps = new Transform[10];
-    public Transform[] tmpMaps = new Transform[10];
-    public Transform currentMap;
+    private Transform[] maps = new Transform[10];
+    private Transform[] tmpMaps = new Transform[10];
+    private Transform currentMap;
 
     private void Start() {
         maps = mapPool.GetComponentsInChildren<Transform>();
         maps.CopyTo(tmpMaps, 0);
-        //tmpMaps = (Transform[])maps.Clone();
     }
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.layer != LayerMask.NameToLayer("Map"))
             return;
-
+            
         currentMap = other.transform;
         maps.CopyTo(tmpMaps, 0);
+
+        Debug.Log((other.transform.GetSiblingIndex()+1));
 
         switch(other.transform.GetSiblingIndex()+1){
             case 1:
@@ -116,7 +118,7 @@ public class MapCtrl : MonoBehaviour
         }
 
         maps = (Transform[])tmpMaps.Clone();
-        
+
         for(int i = 1; i < 10; i++){
             maps[i].SetSiblingIndex(i);
         }
