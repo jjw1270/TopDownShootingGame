@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cead7fbfd66c5064882b320642a89a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
-  speed: 3
+  DefaultHP: 10
+  speed: 2
 --- !u!1 &1088256926929212
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +236,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124596519333206}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0

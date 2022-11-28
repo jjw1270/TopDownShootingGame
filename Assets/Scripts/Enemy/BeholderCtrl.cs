@@ -9,7 +9,7 @@ public class BeholderCtrl : Enemy
     protected override void FollowTarget() {
         if(!lookTarget){
             lookTarget = true;
-            targetVec = (Player.transform.position - this.transform.position).normalized;
+            targetVec = (player.transform.position - this.transform.position).normalized;
             Quaternion rot = Quaternion.LookRotation(targetVec);
             transform.rotation = rot;
         }

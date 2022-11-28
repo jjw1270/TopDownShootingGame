@@ -9,7 +9,7 @@ public class MushroomCtrl : Enemy
 
     protected override void Awake()
     {
-        Player = GameManager.Instance.Player;
+        player = GameManager.Instance.Player;
         animt = GetComponent<Animation>();
     }
 
