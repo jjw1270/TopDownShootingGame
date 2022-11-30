@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Enemy
   - EXP
+  - Missile
+  - Skill
+  - Front
+  - Back
+  - Left
+  - Right
   layers:
   - Default
   - TransparentFX
@@ -15,9 +21,9 @@ TagManager:
   - UI
   - Map
   - Enemy
-  - 
-  - 
-  - 
+  - Player
+  - Skill
+  - Exp
   - 
   - 
   - 

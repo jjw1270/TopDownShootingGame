@@ -13,11 +13,17 @@ public class EnemyCtrl : MonoBehaviour
     private float distance;
     private bool isAttack;
     public int damage = 10;
-
+    private bool isKnockBack;
+    private Rigidbody rb;
+    private Collider coll;
+    private Vector3 reactVec;
     virtual protected void Awake() {
         player = GameManager.Instance.Player;
         
         anim = GetComponent<Animator>();
+
+        rb = GetComponent<Rigidbody>();
+        coll = GetComponent<Collider>();
     }
 
     private void OnEnable() {
@@ -48,13 +54,10 @@ public class EnemyCtrl : MonoBehaviour
     }
 
     private void Update() {
-        if(HP<=0){
-            Die();
+        if(isDie){
+            return;
         }
-        else{
-            FollowTarget();
-        }
-        
+        FollowTarget();
     }
 
     virtual protected void FollowTarget(){
@@ -63,8 +66,11 @@ public class EnemyCtrl : MonoBehaviour
     }
 
     virtual protected void Die(){
-        if(isDie == true) return;
+        if(isDie) return;
         isDie = true;
+
+        rb.isKinematic = true;
+        coll.enabled = false;
 
         anim.SetBool("isDie", true);
 
@@ -76,15 +82,16 @@ public class EnemyCtrl : MonoBehaviour
         //경험치 80%확률
         float percent = Random.Range(0,1f);
         if(percent < 0.8f){
-            ObjectPooler.SpawnFromPool(GameManager.Instance.EXP, this.transform.position);
+            ObjectPooler.SpawnFromPool(GameManager.Instance.Exp, this.transform.position);
         }
+        rb.isKinematic = false;
+        coll.enabled = true;
         this.gameObject.SetActive(false);
     }
 
     private void OnDisable() {
         GameManager.Instance.currentEnemyCount--;
         StopCoroutine(GetDistance());
-
         ObjectPooler.ReturnToPool(gameObject);
     }
 
@@ -96,6 +103,15 @@ public class EnemyCtrl : MonoBehaviour
             }
             yield return new WaitForSeconds(4f);
         }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if(other.gameObject.layer != LayerMask.NameToLayer("Skill"))
+            return;
+        SkillBase skill = other.transform.GetComponent<SkillBase>();
+        skill.HitEffect();
+        GetDamage(skill.damage);
+        skill.gameObject.SetActive(false);
     }
 
     private void OnCollisionStay(Collision other) {
@@ -112,6 +128,29 @@ public class EnemyCtrl : MonoBehaviour
     IEnumerator DamagePlayer(){
         yield return new WaitForSeconds(1f);
         isAttack = false;
+    }
+
+    public void GetDamage(int damage){
+        HP -= damage;
+
+        reactVec = -(player.transform.position - this.transform.position);
+        reactVec = reactVec.normalized;
+
+        if(!isKnockBack){
+            rb.AddForce(reactVec * 10, ForceMode.Impulse);
+            isKnockBack = true;
+            StartCoroutine(KnockBack());
+        }
+            
+
+        if(HP <= 0){
+            Die();
+        }
+    }
+
+    IEnumerator KnockBack(){
+        yield return new WaitForSeconds(0.5f);
+        isKnockBack = false;
     }
 
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMoveCtrl : MonoBehaviour
 {
-    [SerializeField]private FloatingJoystick joystick;
-    [SerializeField]private float playerSpeed = 7;
+    //[SerializeField]private FloatingJoystick joystick;
+    [SerializeField]private float playerSpeed = 6;
     private Animator anim;
 
     private void Awake() {
@@ -16,7 +16,12 @@ public class PlayerMoveCtrl : MonoBehaviour
         if(GameManager.Instance.playerHPCtrl.isPlayerDie)
             return;
 
-        Vector3 direction = Vector3.forward * joystick.Vertical + Vector3.right * joystick.Horizontal;
+        //Vector3 direction = Vector3.forward * joystick.Vertical + Vector3.right * joystick.Horizontal;
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+
+        Vector3 direction = new Vector3(h, 0 , v);
+
         direction = direction.normalized;
 
         this.transform.position += direction * playerSpeed * Time.deltaTime;

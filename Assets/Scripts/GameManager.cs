@@ -11,7 +11,8 @@ public class GameManager : Singleton<GameManager>
     public PlayerHPCtrl playerHPCtrl;
     public int enemyDeathCount;
     [SerializeField]private TextMeshProUGUI timerText;
-    public string EXP = "EXP";
+    public string Exp = "Exp";
+    public int playerLevel = 0;
 
     private void Start() {
         Init();

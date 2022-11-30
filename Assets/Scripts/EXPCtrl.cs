@@ -2,21 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EXPCtrl : MonoBehaviour
+public class EXPCtrl : DisableAfterSec
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    Vector3 dir;
+    public float acceleration = 0.2f;
+    float velocity;
+    
     void Update()
     {
-        
+        CoinMove();
     }
 
-    private void OnDisable() {
-        ObjectPooler.ReturnToPool(gameObject);
+    public void CoinMove(){
+		dir = (GameManager.Instance.Player.transform.position - transform.position).normalized;
+		velocity = (velocity + acceleration* Time.deltaTime);
+		float distance = Vector3.Distance(GameManager.Instance.Player.transform.position, transform.position);
+
+        if (distance <= 4.0f){
+            transform.position = new Vector3(transform.position.x + (dir.x * velocity),
+            transform.position.y,
+            transform.position.z+(dir.z * velocity));
+        }
+        else{
+            velocity = 0.0f;
+        }
     }
 }
