@@ -5,17 +5,21 @@ using UnityEngine;
 public class SkillCtrl : MonoBehaviour
 {
     [SerializeField]private Transform onPlayerSkill;
+    public Collider onScreenCollider;
     [SerializeField]private Transform SP_forward;
     [SerializeField]private Transform SP_back;
     [SerializeField]private Transform SP_left;
     [SerializeField]private Transform SP_right;
 
     const string IceSpear = "IceSpear";
-    const string SparkleBall = "SparkleBall";
     [SerializeField]private GameObject sparkleBall;
+    const string LightningStrike = "LightningStrike";
+    const string MagicArrow = "MagicArrow";
     
     public int level_iceSpear = 1;
     public int level_sparkleBall = 1;
+    public int level_lightningStrike = 1;
+    public int level_magicArrow = 1;
     
 
     void Start()
@@ -26,8 +30,10 @@ public class SkillCtrl : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)){
-            Skill_IceSpear(level_iceSpear);
-            Skill_SparkleBall(level_sparkleBall);
+            // Skill_IceSpear(level_iceSpear);
+            // Skill_SparkleBall(level_sparkleBall);
+            // Skill_LightningStrike(level_lightningStrike);
+            Skill_MagicArrow(level_magicArrow);
         }
     }
 
@@ -45,7 +51,7 @@ public class SkillCtrl : MonoBehaviour
 
         switch(skillLevel){
             case 1:
-                ObjectPooler.SpawnFromPool(IceSpear, SP_forward.position, this.transform.rotation);
+                ObjectPooler.SpawnFromPool(IceSpear, SP_forward.position, Quaternion.Euler(rot_forward));
                 break;
             case 2:
                 ObjectPooler.SpawnFromPool(IceSpear, SP_forward.position, Quaternion.Euler(rot_forward));
@@ -122,5 +128,56 @@ public class SkillCtrl : MonoBehaviour
                 Instantiate(sparkleBall, brVec, Quaternion.identity, onPlayerSkill);
                 break;
         }
+    }
+
+    private void Skill_LightningStrike(int skillLevel){
+        int strikeCount = 0;
+        switch(skillLevel){
+            case 1:
+                strikeCount = 1;
+                break;
+            case 2:
+                strikeCount = 2;
+                break;
+            case 3:
+                strikeCount = 4;
+                break;
+            case 4:
+                strikeCount = 6;
+                break;
+            case 5:
+                strikeCount = 8;
+                break;
+        }
+
+        for(int i = 0; i < strikeCount; i++){
+            Vector3 randomPos = RandomPos();
+            ObjectPooler.SpawnFromPool(LightningStrike, randomPos, Quaternion.identity);
+        }
+    }
+    private Vector3 RandomPos(){
+        Vector3 originPosition = onScreenCollider.transform.position;
+        // 콜라이더의 사이즈를 가져오는 bound.size 사용
+        float range_X = onScreenCollider.bounds.size.x;
+        float range_Z = onScreenCollider.bounds.size.z;
+        
+        range_X = Random.Range( (range_X / 2) * -1, range_X / 2);
+        range_Z = Random.Range( (range_Z / 2) * -1, range_Z / 2);
+        Vector3 RandomPostion = new Vector3(range_X, 0.5f, range_Z);
+
+        Vector3 respawnPosition = originPosition + RandomPostion;
+        return respawnPosition;
+    }
+
+    private void Skill_MagicArrow(int skillLevel){
+        int arrowCount = (skillLevel-1) * 2 + 1;
+        StartCoroutine(Arrow(arrowCount));
+    }
+    IEnumerator Arrow(int arrowCount){
+        for(int i = 0; i < arrowCount; i++){
+            ObjectPooler.SpawnFromPool(MagicArrow, SP_forward.position, Quaternion.identity);
+            yield return new WaitForSeconds(0.3f);
+        }
+        yield return null;
     }
 }

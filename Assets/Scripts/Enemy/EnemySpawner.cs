@@ -93,14 +93,12 @@ public class EnemySpawner : MonoBehaviour
                     randomPos = new Vector3(randomPos.x+2f, 0, randomPos.z+2f);
 
                 ObjectPooler.SpawnFromPool(enemyTag, randomPos);
-                GameManager.Instance.currentEnemyCount++;
             }
             return;
         }
 
         for(int i = 0; i < enemyCount; i++){
             ObjectPooler.SpawnFromPool(enemyTag, RandomPos(index));
-            GameManager.Instance.currentEnemyCount++;
         }
     }
     private Vector3 RandomPos(int index){

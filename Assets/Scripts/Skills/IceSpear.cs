@@ -17,23 +17,7 @@ public class IceSpear : SkillBase
             return;
         }
 
-        switch(GameManager.Instance.skillCtrl.level_iceSpear){
-            case 1:
-                SoundManager.Instance.PlaySFXSound(enableSound);
-                break;
-            case 2:
-                SoundManager.Instance.PlaySFXSound(enableSound, 0.5f);
-                break;
-            case 3:
-                SoundManager.Instance.PlaySFXSound(enableSound, 0.33f);
-                break;
-            case 4:
-                SoundManager.Instance.PlaySFXSound(enableSound, 0.25f);
-                break;
-            case 5:
-                SoundManager.Instance.PlaySFXSound(enableSound, 0.2f);
-                break;
-        }
+        SoundManager.Instance.PlaySFXSound(enableSound, 1f/GameManager.Instance.skillCtrl.level_iceSpear);
         
         //damage = 플레이어 레벨에 비례하여 증가
         damage = (int)(damage * GameManager.Instance.playerLevel * 1.2f);
@@ -44,8 +28,8 @@ public class IceSpear : SkillBase
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
-    protected override void OnCollisionEnter(Collision other) {
-        base.OnCollisionEnter(other);
+    protected override void OnTriggerEnter(Collider other) {
+        base.OnTriggerEnter(other);
         
         HitEffect();
         this.gameObject.SetActive(false);

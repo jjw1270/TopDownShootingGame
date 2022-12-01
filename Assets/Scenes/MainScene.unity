@@ -17267,6 +17267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 443489187}
   - component: {fileID: 443489186}
+  - component: {fileID: 443489188}
   m_Layer: 0
   m_Name: OnPlayerSkill
   m_TagString: Untagged
@@ -17303,6 +17304,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &443489188
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443489185}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 50, y: 1, z: 25}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &443935758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33260,7 +33274,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1248813849021263}
   playtimeSec: 0
-  currentEnemyCount: 0
   playerHPCtrl: {fileID: 136306803783376175}
   skillCtrl: {fileID: 136306803783376176}
   enemyDeathCount: 0
@@ -46337,6 +46350,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5052682f23f19384da5d743dc76ed64b, type: 3}
   - {fileID: 8300000, guid: 73f34590ca4a9b6409f7d3d29781d2ad, type: 3}
   - {fileID: 8300000, guid: 31d4354cef3a92a4481b8c1464e22afd, type: 3}
+  - {fileID: 8300000, guid: 715780c44280b5a478739a8d5c7221ce, type: 3}
+  - {fileID: 8300000, guid: 9c62c93deb5774144a661cff013c5171, type: 3}
 --- !u!4 &1356458135
 Transform:
   m_ObjectHideFlags: 0
@@ -63129,6 +63144,18 @@ MonoBehaviour:
   - tag: SparkleBallHit
     prefab: {fileID: 5514385706801072795, guid: 3c4c26067696d924097b78c84929932a, type: 3}
     size: 20
+  - tag: LightningStrike
+    prefab: {fileID: 539944327381915223, guid: 7e71369e52cf93f469c1dca3bb7d760b, type: 3}
+    size: 10
+  - tag: LightningStrikeHit
+    prefab: {fileID: 2605802647302135019, guid: b1fe923d7b7f3c343a853d271046ed47, type: 3}
+    size: 10
+  - tag: MagicArrow
+    prefab: {fileID: 4542218786426923797, guid: dced665b3212bb64a91739063a606396, type: 3}
+    size: 15
+  - tag: MagicArrowHit
+    prefab: {fileID: 92025842374942282, guid: ae88d272502094f458d663c633b1a077, type: 3}
+    size: 15
 --- !u!1001 &1797532890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77362,6 +77389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onPlayerSkill: {fileID: 443489187}
+  onScreenCollider: {fileID: 443489188}
   SP_forward: {fileID: 1033638888}
   SP_back: {fileID: 520119991}
   SP_left: {fileID: 34308686}
@@ -77369,6 +77397,8 @@ MonoBehaviour:
   sparkleBall: {fileID: 9063602057535343846, guid: 93049a1b30b84bf4ea95247a6c1c55c7, type: 3}
   level_iceSpear: 1
   level_sparkleBall: 1
+  level_lightningStrike: 1
+  level_magicArrow: 1
 --- !u!114 &136306803783376177
 MonoBehaviour:
   m_ObjectHideFlags: 0

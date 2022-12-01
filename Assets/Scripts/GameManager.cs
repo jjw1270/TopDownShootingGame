@@ -7,7 +7,6 @@ public class GameManager : Singleton<GameManager>
 {
     public GameObject Player;
     public int playtimeSec;
-    public int currentEnemyCount;
     public PlayerHPCtrl playerHPCtrl;
     public SkillCtrl skillCtrl;
     public int enemyDeathCount;
@@ -22,7 +21,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Init(){
         playtimeSec = 0;
-        currentEnemyCount = 0;
         enemyDeathCount = 0;
     }
 

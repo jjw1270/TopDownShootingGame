@@ -90,7 +90,6 @@ public class EnemyCtrl : MonoBehaviour
     }
 
     private void OnDisable() {
-        GameManager.Instance.currentEnemyCount--;
         StopCoroutine(GetDistance());
         ObjectPooler.ReturnToPool(gameObject);
     }
@@ -124,7 +123,7 @@ public class EnemyCtrl : MonoBehaviour
     public void GetDamage(int damage){
         HP -= damage;
 
-        reactVec = -(player.transform.position - this.transform.position);
+        reactVec = this.transform.position - player.transform.position;
         reactVec = reactVec.normalized;
 
         if(!isKnockBack){
