@@ -105,15 +105,6 @@ public class EnemyCtrl : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.layer != LayerMask.NameToLayer("Skill"))
-            return;
-        SkillBase skill = other.transform.GetComponent<SkillBase>();
-        skill.HitEffect();
-        GetDamage(skill.damage);
-        skill.gameObject.SetActive(false);
-    }
-
     private void OnCollisionStay(Collision other) {
         if(other.transform.CompareTag("Player")){
             if(!isAttack){

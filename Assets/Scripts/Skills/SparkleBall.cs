@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IceSpear : SkillBase
+public class SparkleBall : SkillBase
 {
     private bool isAwake;
-    private float speed = 20f;
-    const string IceSpearHit = "IceSpearHit";
-    const string enableSound = "etfx_shoot_storm";
+    private float speed = 100f;
+    const string SparkleBallHit = "SparkleBallHit";
+    const string enableSound = "etfx_shoot_rocket03";
     
     protected override void OnEnable() {
         base.OnEnable();
@@ -17,7 +17,7 @@ public class IceSpear : SkillBase
             return;
         }
 
-        switch(GameManager.Instance.skillCtrl.level_iceSpear){
+        switch(GameManager.Instance.skillCtrl.level_sparkleBall){
             case 1:
                 SoundManager.Instance.PlaySFXSound(enableSound);
                 break;
@@ -34,24 +34,25 @@ public class IceSpear : SkillBase
                 SoundManager.Instance.PlaySFXSound(enableSound, 0.2f);
                 break;
         }
-        
-        //damage = 플레이어 레벨에 비례하여 증가
-        damage = (int)(damage * GameManager.Instance.playerLevel * 1.2f);
     }
 
     private void FixedUpdate()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        this.transform.RotateAround(GameManager.Instance.Player.transform.position, Vector3.up, speed * Time.deltaTime);
     }
 
     protected override void OnCollisionEnter(Collision other) {
         base.OnCollisionEnter(other);
         
         HitEffect();
-        this.gameObject.SetActive(false);
     }
 
     public override void HitEffect(){
-        ObjectPooler.SpawnFromPool(IceSpearHit, this.transform.position);
+        ObjectPooler.SpawnFromPool(SparkleBallHit, this.transform.position);
+    }
+
+    protected override void OnDisable()
+    {
+        StopCoroutine(disableCoroutine);
     }
 }

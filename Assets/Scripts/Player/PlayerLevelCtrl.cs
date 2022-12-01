@@ -24,11 +24,11 @@ public class PlayerLevelCtrl : MonoBehaviour
     }
 
     private void GetExp(){
+        SoundManager.Instance.PlaySFXSound("etfx_spawn");
         exp++;
         if(exp>=maxExpToLevelUp){
             LevelUp();
         }
-        Debug.Log("a");
         expBar.value = exp / (float)maxExpToLevelUp;
     }
 

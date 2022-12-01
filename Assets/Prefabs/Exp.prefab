@@ -111,4 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableSec: 90
-  acceleration: 0.2
+  acceleration: 0.3

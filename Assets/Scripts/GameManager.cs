@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
     public int playtimeSec;
     public int currentEnemyCount;
     public PlayerHPCtrl playerHPCtrl;
+    public SkillCtrl skillCtrl;
     public int enemyDeathCount;
     [SerializeField]private TextMeshProUGUI timerText;
     public string Exp = "Exp";

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DisableAfterSec : MonoBehaviour
 {
     [SerializeField]private float disableSec = 1f;
-    Coroutine disableCoroutine;
+    protected Coroutine disableCoroutine;
     virtual protected void OnEnable() {
         disableCoroutine = StartCoroutine(Disable(disableSec));
     }
@@ -15,7 +15,7 @@ public class DisableAfterSec : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    virtual protected void OnDisable() {
+    protected virtual void OnDisable() {
         StopCoroutine(disableCoroutine);
         ObjectPooler.ReturnToPool(gameObject);
     }
