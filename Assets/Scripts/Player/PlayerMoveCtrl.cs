@@ -12,7 +12,7 @@ public class PlayerMoveCtrl : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    private void FixedUpdate() {
+    private void Update() {
         if(GameManager.Instance.playerHPCtrl.isPlayerDie)
             return;
 

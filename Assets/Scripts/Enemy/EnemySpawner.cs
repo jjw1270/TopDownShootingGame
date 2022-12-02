@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
     {
         StartCoroutine(MinTimer());
     }
-    IEnumerator MinTimer(){
+    IEnumerator MinTimer(){  //나중에 델리게이트 
         while(true){
             if(playTimeMin == 0){
                 yield return new WaitForSecondsRealtime(1f);

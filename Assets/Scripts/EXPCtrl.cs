@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EXPCtrl : DisableAfterSec
 {
-    Vector3 dir;
     public float acceleration = 0.2f;
-    float velocity;
+    private Vector3 dir;
+    private float velocity;
     
     void Update()
     {

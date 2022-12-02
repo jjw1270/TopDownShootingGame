@@ -30,12 +30,14 @@ public class SkillCtrl : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)){
-            // Skill_IceSpear(level_iceSpear);
-            // Skill_SparkleBall(level_sparkleBall);
-            // Skill_LightningStrike(level_lightningStrike);
+            //Skill_IceSpear(level_iceSpear);
+            //Skill_SparkleBall(level_sparkleBall);
+            //Skill_LightningStrike(level_lightningStrike);
             Skill_MagicArrow(level_magicArrow);
         }
     }
+
+
 
 
     private void Skill_IceSpear(int skillLevel){
@@ -85,6 +87,7 @@ public class SkillCtrl : MonoBehaviour
     }
 
     private void Skill_SparkleBall(int skillLevel){
+        //localRotation 으로 바꿀 것
         Vector3 forwardVec = new Vector3(this.transform.position.x, 1, this.transform.position.z + 5f);
         Vector3 backVec = new Vector3(this.transform.position.x, 1, this.transform.position.z - 5f);
         Vector3 leftVec = new Vector3(this.transform.position.x - 5f, 1, this.transform.position.z);
