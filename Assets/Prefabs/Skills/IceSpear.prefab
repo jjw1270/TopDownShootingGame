@@ -4830,7 +4830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableSec: 3
-  damage: 40
+  defaultDamage: 30
 --- !u!1 &6786921287779529424
 GameObject:
   m_ObjectHideFlags: 0

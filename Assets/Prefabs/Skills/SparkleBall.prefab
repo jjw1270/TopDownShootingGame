@@ -9714,7 +9714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableSec: 15
-  damage: 30
+  defaultDamage: 40
 --- !u!1 &9063602057535348284
 GameObject:
   m_ObjectHideFlags: 0

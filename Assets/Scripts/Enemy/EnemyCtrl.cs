@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyCtrl : MonoBehaviour
 {
-    protected GameObject player;
-    private Animator anim;
-    protected bool isDie;
     public float DefaultHP;
-    private float HP;
     public float speed = 1f;
+    public int damage = 10;
+    protected GameObject player;
+    protected bool isDie;
+    private Animator anim;
+    private float HP;
     private float distance;
     private bool isAttack;
-    public int damage = 10;
     private bool isKnockBack;
     private Rigidbody rb;
     private Collider coll;
     private Vector3 reactVec;
+    
     virtual protected void Awake() {
         player = GameManager.Instance.Player;
         
@@ -123,6 +125,9 @@ public class EnemyCtrl : MonoBehaviour
     public void GetDamage(int damage){
         HP -= damage;
 
+        GameObject dmgText =  Instantiate(GameManager.Instance.damageText, this.transform.position+Vector3.up*2, Quaternion.Euler(20,0,0));
+        dmgText.GetComponent<TextMeshPro>().text = damage.ToString();
+
         reactVec = this.transform.position - player.transform.position;
         reactVec = reactVec.normalized;
 
@@ -131,7 +136,6 @@ public class EnemyCtrl : MonoBehaviour
             isKnockBack = true;
             StartCoroutine(KnockBack());
         }
-            
 
         if(HP <= 0){
             Die();

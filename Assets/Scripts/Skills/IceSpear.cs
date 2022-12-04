@@ -16,11 +16,7 @@ public class IceSpear : SkillBase
             isAwake = true;
             return;
         }
-
         SoundManager.Instance.PlaySFXSound(enableSound, 1f/GameManager.Instance.skillCtrl.level_iceSpear);
-        
-        //damage = 플레이어 레벨에 비례하여 증가
-        damage = (int)(damage * GameManager.Instance.playerLevel * 1.2f);
     }
 
     private void FixedUpdate()

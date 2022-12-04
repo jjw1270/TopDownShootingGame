@@ -6,7 +6,7 @@ public class SkillCtrl : MonoBehaviour
 {
     [SerializeField]private Transform onPlayerSkill;
     public Collider onScreenCollider;
-    [SerializeField]private Transform SP_forward;
+    public Transform SP_forward;
     [SerializeField]private Transform SP_back;
     [SerializeField]private Transform SP_left;
     [SerializeField]private Transform SP_right;
@@ -15,11 +15,13 @@ public class SkillCtrl : MonoBehaviour
     [SerializeField]private GameObject sparkleBall;
     const string LightningStrike = "LightningStrike";
     const string MagicArrow = "MagicArrow";
+    const string PunchHeavy = "PunchHeavy";
     
     public int level_iceSpear = 1;
     public int level_sparkleBall = 1;
     public int level_lightningStrike = 1;
     public int level_magicArrow = 1;
+    public int level_punchHeavy = 1;
     
 
     void Start()
@@ -33,12 +35,10 @@ public class SkillCtrl : MonoBehaviour
             //Skill_IceSpear(level_iceSpear);
             //Skill_SparkleBall(level_sparkleBall);
             //Skill_LightningStrike(level_lightningStrike);
-            Skill_MagicArrow(level_magicArrow);
+            //Skill_MagicArrow(level_magicArrow);
+            //Skill_PunchHeavy(level_punchHeavy);
         }
     }
-
-
-
 
     private void Skill_IceSpear(int skillLevel){
         Vector3 rot_forward = this.transform.rotation.eulerAngles;
@@ -182,5 +182,15 @@ public class SkillCtrl : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
         yield return null;
+    }
+
+    private void Skill_PunchHeavy(int skillLevel){
+        Vector3 punchScale = new Vector3(2f, 2f, skillLevel);
+        Vector3 colliderCenter = new Vector3(0, 0, skillLevel);
+        GameObject punchHeavy = ObjectPooler.SpawnFromPool(PunchHeavy, SP_forward.position, this.transform.rotation);
+        punchHeavy.transform.localScale = punchScale;
+        BoxCollider col = punchHeavy.GetComponent<BoxCollider>();
+        col.size = punchScale;
+        col.center = colliderCenter;
     }
 }

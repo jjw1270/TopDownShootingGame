@@ -18,7 +18,6 @@ public class SparkleBall : SkillBase
         }
 
         SoundManager.Instance.PlaySFXSound(enableSound, 1f/GameManager.Instance.skillCtrl.level_sparkleBall);
-
     }
 
     private void FixedUpdate()

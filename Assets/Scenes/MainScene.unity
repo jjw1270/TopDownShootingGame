@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -33280,6 +33280,7 @@ MonoBehaviour:
   timerText: {fileID: 1477467385}
   Exp: Exp
   playerLevel: 0
+  damageText: {fileID: 8917504262936983836, guid: 3ef9e3837055e7b4cb786b7a16234c1d, type: 3}
 --- !u!4 &947113470
 Transform:
   m_ObjectHideFlags: 0
@@ -46352,6 +46353,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 31d4354cef3a92a4481b8c1464e22afd, type: 3}
   - {fileID: 8300000, guid: 715780c44280b5a478739a8d5c7221ce, type: 3}
   - {fileID: 8300000, guid: 9c62c93deb5774144a661cff013c5171, type: 3}
+  - {fileID: 8300000, guid: 07532e25ab2bf0e4e9520610dfe2e0ce, type: 3}
 --- !u!4 &1356458135
 Transform:
   m_ObjectHideFlags: 0
@@ -63156,6 +63158,12 @@ MonoBehaviour:
   - tag: MagicArrowHit
     prefab: {fileID: 92025842374942282, guid: ae88d272502094f458d663c633b1a077, type: 3}
     size: 15
+  - tag: PunchHeavy
+    prefab: {fileID: 1002179539658746419, guid: 4653807a4b5306741824398f0749db1e, type: 3}
+    size: 2
+  - tag: PunchHeavyHit
+    prefab: {fileID: 3341476074340842036, guid: 9ddace1b41c17144bbdc126aaa58eea9, type: 3}
+    size: 5
 --- !u!1001 &1797532890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77399,6 +77407,7 @@ MonoBehaviour:
   level_sparkleBall: 1
   level_lightningStrike: 1
   level_magicArrow: 1
+  level_punchHeavy: 1
 --- !u!114 &136306803783376177
 MonoBehaviour:
   m_ObjectHideFlags: 0

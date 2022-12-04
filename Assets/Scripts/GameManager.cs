@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]private TextMeshProUGUI timerText;
     public string Exp = "Exp";
     public int playerLevel = 0;
+    public GameObject damageText;
 
     private void Start() {
         Init();

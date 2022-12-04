@@ -19415,4 +19415,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableSec: 0.8
-  damage: 80
+  defaultDamage: 100
