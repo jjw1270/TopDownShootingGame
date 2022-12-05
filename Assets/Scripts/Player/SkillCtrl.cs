@@ -32,11 +32,11 @@ public class SkillCtrl : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)){
-            //Skill_IceSpear(level_iceSpear);
-            //Skill_SparkleBall(level_sparkleBall);
-            //Skill_LightningStrike(level_lightningStrike);
-            //Skill_MagicArrow(level_magicArrow);
-            //Skill_PunchHeavy(level_punchHeavy);
+            Skill_IceSpear(level_iceSpear);
+            Skill_SparkleBall(level_sparkleBall);
+            Skill_LightningStrike(level_lightningStrike);
+            Skill_MagicArrow(level_magicArrow);
+            Skill_PunchHeavy(level_punchHeavy);
         }
     }
 

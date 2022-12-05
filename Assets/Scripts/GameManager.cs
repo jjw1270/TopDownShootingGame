@@ -15,6 +15,10 @@ public class GameManager : Singleton<GameManager>
     public int playerLevel = 0;
     public GameObject damageText;
 
+    private new void Awake() {
+        
+    }
+
     private void Start() {
         Init();
         InvokeRepeating("Timer", 1f, 1f);

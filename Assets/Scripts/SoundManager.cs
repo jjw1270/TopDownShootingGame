@@ -4,29 +4,43 @@ using UnityEngine;
 
 public class SoundManager : Singleton<SoundManager>
 {
-    [SerializeField] GameObject BGM;
-    [SerializeField] GameObject SFX;
-    private AudioSource bgmPlayer;
-    private AudioSource sfxPlayer;
+    [SerializeField]private AudioSource bgmPlayer;
+    [SerializeField]private AudioSource sfxPlayer;
 
     public float masterVolumeBGM = 1f;
     public float masterVolumeSFX = 1f;
 
-    [SerializeField]
-    private AudioClip mainBgmAudioClip;   //mainScene bgm
-    
-    [SerializeField]
-    private AudioClip[] sfxAudioClips;    //soundEffect 
+    [SerializeField]private AudioClip[] bgmAudioClip;   //mainScene bgm
+    [SerializeField]private AudioClip[] sfxAudioClips;    //soundEffect 
     //soundEffect Dictionary
     Dictionary<string, AudioClip> sfxAudioClipsDic = new Dictionary<string, AudioClip>();
 
     protected override void Awake() {
-
-        bgmPlayer = BGM.GetComponent<AudioSource>();
-        
-        sfxPlayer = SFX.GetComponent<AudioSource>();
+        base.Awake();
         foreach(AudioClip audioClip in sfxAudioClips){
             sfxAudioClipsDic.Add(audioClip.name, audioClip);
+        }
+    }
+
+    private void Start() {
+        StartCoroutine(PlayBGMSoundLoop());
+    }
+
+    IEnumerator PlayBGMSoundLoop(float volume = 0.3f){
+        int i = 0;
+        bgmPlayer.volume = volume;
+        bgmPlayer.clip = bgmAudioClip[i];
+        bgmPlayer.Play();
+        while(true){
+            yield return new WaitForSeconds(2f);
+            if(bgmPlayer.isPlaying) continue;
+
+            i++;
+            if(i >= bgmAudioClip.Length-1){
+                i = 0;
+            }
+            bgmPlayer.clip = bgmAudioClip[i];
+            bgmPlayer.Play();
         }
     }
     
