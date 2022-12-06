@@ -50,26 +50,26 @@ public class EnemySpawner : MonoBehaviour
             else if(playTimeMin == 6){
                 StopCoroutine(SlimeCoroutine);
                 ChestCoroutine = StartCoroutine(Spawn(Chest, 2, 1));
+                Golem_BossCoroutine = StartCoroutine(Spawn(Golem_Boss, 1, 90));
+                Debug.Log("golem");
             }
             else if(playTimeMin == 8){
-                Golem_BossCoroutine = StartCoroutine(Spawn(Golem_Boss, 1, 90));
-            }
-            else if(playTimeMin == 12){
+                StopCoroutine(SpiderCoroutine);
+                TurtleShellCoroutine = StartCoroutine(Spawn(TurtleShell, 4, 3));
                 GoblinCoroutine = StartCoroutine(Spawn(Goblin, 3, 5));
             }
-            else if(playTimeMin == 14){
-                StopCoroutine(SpiderCoroutine);
+            else if(playTimeMin == 10){
+                SpiderCoroutine = StartCoroutine(Spawn(Spider, 30, 13));
                 BeholderCoroutine = StartCoroutine(Spawn(Beholder, 20, 10));
-            }
-            else if(playTimeMin == 16){
-                SlimeCoroutine = StartCoroutine(Spawn(Slime, 2, 2));
+                SlimeCoroutine = StartCoroutine(Spawn(Slime, 4, 2));
                 FireElemental_BossCoroutine = StartCoroutine(Spawn(FireElemental_Boss, 1, 90));
             }
-            else if(playTimeMin == 20){  //게임 종료
-                GameManager.Instance.GameOver();
+            else if(playTimeMin == 16){  //게임 종료
+                GameManager.Instance.GameOver(false);
+                yield break;
             }
 
-            yield return new WaitForSecondsRealtime(60f);
+            yield return new WaitForSeconds(60f);
             playTimeMin += 1;
         }
     }

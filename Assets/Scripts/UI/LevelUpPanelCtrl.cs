@@ -19,7 +19,6 @@ public class LevelUpPanelCtrl : MonoBehaviour
         for(int i = 0; i < skills.Length; i++){
             if(skills[i].isSkillLevelMax()){
                 tmpSkills.Remove(skills[i]);
-                Debug.Log("A");
             }
         }
         for(int i = 0; i < 3; ){

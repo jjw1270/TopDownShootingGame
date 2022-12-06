@@ -23,6 +23,10 @@ public class LightningStrike : SkillBase
         
         HitEffect();
     }
+    public override void SetDamage()
+    {
+        damage = Random.Range(defaultDamage-15,defaultDamage+15) + (GameManager.Instance.playerLevelCtrl.playerLevel-1) * 12;
+    }
 
     public override void HitEffect(){
         ObjectPooler.SpawnFromPool(LightningStrikeHit, this.transform.position);

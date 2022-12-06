@@ -28,7 +28,10 @@ public class IceSpear : SkillBase
         base.OnTriggerEnter(other);
         
         HitEffect();
-        this.gameObject.SetActive(false);
+    }
+    public override void SetDamage()
+    {
+        damage = Random.Range(defaultDamage-15,defaultDamage+15) + (GameManager.Instance.playerLevelCtrl.playerLevel-1) * 8;
     }
 
     public override void HitEffect(){

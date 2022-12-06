@@ -658,8 +658,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultHP: 100
-  speed: 25
+  speed: 20
   damage: 7
+  anim: {fileID: 9011648103030661363}
+  rb: {fileID: 6586049852090097414}
+  coll: {fileID: 7666914964772348233}
+  disableSec: 3
 --- !u!1 &9011648103021171509
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,6 +30,10 @@ public class SparkleBall : SkillBase
         
         HitEffect();
     }
+    public override void SetDamage()
+    {
+        damage = Random.Range(defaultDamage-15,defaultDamage+15) + (GameManager.Instance.playerLevelCtrl.playerLevel-1) * 3;
+    }
 
     public override void HitEffect(){
         ObjectPooler.SpawnFromPool(SparkleBallHit, this.transform.position);

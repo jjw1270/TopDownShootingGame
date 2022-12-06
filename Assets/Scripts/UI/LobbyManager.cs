@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -10,10 +9,10 @@ public class LobbyManager : MonoBehaviour
         SoundManager.Instance.PlaySFXSound("Spell_00");
         anim.SetBool("isGameStart", true);
         Invoke("LoadMainScene", 1f);
-        
     }
+
     private void LoadMainScene(){
-        SceneManager.LoadScene("MainScene");
+        LoadingSceneCtrl.LoadScene("MainScene");
     }
 
     public void QuitGame(){

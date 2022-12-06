@@ -9569,8 +9569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62a39ad18e1a8a448c68919ffd86290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableSec: 3
-  defaultDamage: 60
+  disableSec: 4
+  defaultDamage: 90
   speed: 8
 --- !u!1 &4542218786427006249
 GameObject:

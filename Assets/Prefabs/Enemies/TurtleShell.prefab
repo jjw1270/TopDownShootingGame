@@ -937,6 +937,9 @@ MonoBehaviour:
   DefaultHP: 40
   speed: 2
   damage: 5
+  anim: {fileID: 95528395651247964}
+  rb: {fileID: -2477468610989664841}
+  coll: {fileID: 1527329531640266554}
 --- !u!1 &1914324128724412
 GameObject:
   m_ObjectHideFlags: 0

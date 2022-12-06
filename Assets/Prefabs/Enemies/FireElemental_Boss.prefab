@@ -1041,7 +1041,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3972024285425991496}
   serializedVersion: 2
-  m_Mass: 15
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1061,9 +1061,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cead7fbfd66c5064882b320642a89a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultHP: 2000
+  DefaultHP: 1500
   speed: 3
-  damage: 30
+  damage: 25
+  anim: {fileID: 7688923789392347016}
+  rb: {fileID: 6550768479913613500}
+  coll: {fileID: 8849241406032199973}
 --- !u!1 &3997728500504602174
 GameObject:
   m_ObjectHideFlags: 0

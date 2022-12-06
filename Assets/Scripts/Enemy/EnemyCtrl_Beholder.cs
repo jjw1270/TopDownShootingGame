@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EnemyCtrl_Beholder : EnemyCtrl
 {
-    bool lookTarget;
-    Vector3 targetVec;
+    private bool lookTarget;
+    private Vector3 targetVec;
+    
     protected override void FollowTarget() {
         if(!lookTarget){
             lookTarget = true;

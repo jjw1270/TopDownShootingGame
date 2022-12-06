@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class EnemyCtrl_Mushroom : EnemyCtrl
 {
-    private Animation animt;
-    public const string DEATH = "Death";
-
-    protected override void Awake()
-    {
-        player = GameManager.Instance.Player;
-        animt = GetComponent<Animation>();
-    }
+    [SerializeField]private Animation animt;
+    private const string DEATH = "Death";
 
     protected override void Die()
     {

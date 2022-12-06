@@ -10,16 +10,15 @@ public class GameManager : Singleton<GameManager>
     public PlayerHPCtrl playerHPCtrl;
     public PlayerSkillCtrl playerSkillCtrl;
     public PlayerLevelCtrl playerLevelCtrl;
+    [SerializeField]EnemySpawner enemySpawner;
     public int enemyDeathCount;
     [SerializeField]private TextMeshProUGUI timerText;
     public string Exp = "Exp";
-    public int playerLevel = 0;
     public GameObject damageText;
-
-    private new void Awake() {
-        
+    [SerializeField]private GameObject gameOverPanel;
+    public bool isFail;
+    protected override void Awake() {
     }
-
     private void Start() {
         Init();
         InvokeRepeating("Timer", 1f, 1f);
@@ -30,18 +29,17 @@ public class GameManager : Singleton<GameManager>
         enemyDeathCount = 0;
     }
 
-    private void Update() {
-
-    }
-
     private void Timer(){
         playtimeSec += 1;
         timerText.text = string.Format("{0:D2} : {1:D2}", playtimeSec / 60, playtimeSec % 60);
     }
 
-    public void GameOver(){
-        StopAllCoroutines();
+    public void GameOver(bool _isFail){
+        isFail = _isFail;
+        enemySpawner.StopAllCoroutines();
+        playerSkillCtrl.StopAllCoroutines();
         CancelInvoke("Timer");
         //게임오버 씬
+        gameOverPanel.SetActive(true);
     }
 }

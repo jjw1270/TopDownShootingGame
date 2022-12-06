@@ -14,10 +14,9 @@ public class PlayerLevelCtrl : MonoBehaviour
     public GameObject levelUpPanel;
     [SerializeField]private GameObject[] hudSkillIcons = new GameObject[5];
     [SerializeField]private TextMeshProUGUI[] hudSkillLevels = new TextMeshProUGUI[5];
-    int playerLevel;
+    public int playerLevel = 0;
     void Start()
     {
-        playerLevel = GameManager.Instance.playerLevel;
         playerLevel = 1;
         levelText.text = playerLevel.ToString();
         PlayerSkillCtrl.skill firstRandomSkill = (PlayerSkillCtrl.skill)(UnityEngine.Random.Range(0, Enum.GetNames(typeof(PlayerSkillCtrl.skill)).Length));
@@ -36,7 +35,8 @@ public class PlayerLevelCtrl : MonoBehaviour
 
     private void LevelUp(){
         playerLevel++;
-        maxExpToLevelUp += 6;
+        GameManager.Instance.playerHPCtrl.GetDamage(-30);
+        maxExpToLevelUp = playerLevel * 7;
         levelText.text = playerLevel.ToString();
 
         levelUpPanel.SetActive(true);

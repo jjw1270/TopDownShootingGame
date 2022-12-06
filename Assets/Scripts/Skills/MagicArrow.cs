@@ -36,6 +36,7 @@ public class MagicArrow : SkillBase
             return;
         }
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        transform.LookAt(this.transform.position);
     }
 
     protected override void OnTriggerEnter(Collider other) {
@@ -44,6 +45,10 @@ public class MagicArrow : SkillBase
 
         HitEffect();
         this.gameObject.SetActive(false);
+    }
+    public override void SetDamage()
+    {
+        damage = Random.Range(defaultDamage-15,defaultDamage+15) + (GameManager.Instance.playerLevelCtrl.playerLevel-1) * 10;
     }
 
     public override void HitEffect(){

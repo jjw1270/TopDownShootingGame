@@ -3675,8 +3675,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultHP: 30
-  speed: 20
+  speed: 17
   damage: 4
+  anim: {fileID: 5168645111045253588}
+  rb: {fileID: 7749882797879204790}
+  coll: {fileID: 1864594721496845188}
 --- !u!1 &8756870369409294498
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,6 +29,11 @@ public class PunchHeavy : SkillBase
         this.transform.position = GameManager.Instance.playerSkillCtrl.SP_forward.transform.position;
     }
 
+    public override void SetDamage()
+    {
+        damage = Random.Range(defaultDamage-15,defaultDamage+15) + (GameManager.Instance.playerLevelCtrl.playerLevel-1) * 8;
+    }
+
     public override void HitEffect(){
     }
     public void HitEffect(Transform other){

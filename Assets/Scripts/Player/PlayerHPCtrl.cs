@@ -25,10 +25,14 @@ public class PlayerHPCtrl : MonoBehaviour
 
     public void GetDamage(int damage){
         if(isPlayerDie) return;
-
-        StartCoroutine(HitColor());
-
         currentHp-=damage;
+        if(damage<=0){
+            if(currentHp >= maxHp) currentHp = maxHp;
+        }
+        else{
+            StartCoroutine(HitColor());
+        }
+        
         hpBar.value = currentHp / maxHp;
         if(currentHp<= 0){
             Die();
@@ -44,6 +48,6 @@ public class PlayerHPCtrl : MonoBehaviour
     private void Die(){
         anim.SetBool("isDie", true);
         isPlayerDie = true;
-        GameManager.Instance.GameOver();
+        GameManager.Instance.GameOver(true);
     }
 }

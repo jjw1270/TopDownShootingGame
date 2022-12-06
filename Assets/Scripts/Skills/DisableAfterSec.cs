@@ -16,7 +16,7 @@ public class DisableAfterSec : MonoBehaviour
     }
 
     protected virtual void OnDisable() {
-        StopCoroutine(disableCoroutine);
+        //StopCoroutine(disableCoroutine);
         ObjectPooler.ReturnToPool(gameObject);
     }
 }

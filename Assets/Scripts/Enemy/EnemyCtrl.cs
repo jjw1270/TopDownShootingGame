@@ -8,27 +8,23 @@ public class EnemyCtrl : MonoBehaviour
     public float DefaultHP;
     public float speed = 1f;
     public int damage = 10;
+    [SerializeField]private Animator anim;
+    [SerializeField]private Rigidbody rb;
+    [SerializeField]private Collider coll;
     protected GameObject player;
     protected bool isDie;
-    private Animator anim;
     private float HP;
     private float distance;
     private bool isAttack;
     private bool isKnockBack;
-    private Rigidbody rb;
-    private Collider coll;
     private Vector3 reactVec;
     
-    virtual protected void Awake() {
+    private void Awake() {
         player = GameManager.Instance.Player;
-        
-        anim = GetComponent<Animator>();
-
-        rb = GetComponent<Rigidbody>();
-        coll = GetComponent<Collider>();
     }
 
     private void OnEnable() {
+        isDie = false;
         SetHP();
         StartCoroutine(GetDistance());
     }
@@ -37,28 +33,27 @@ public class EnemyCtrl : MonoBehaviour
         //경과 시간에 비례하여 체력 증가
         int playTimeMin = GameManager.Instance.playtimeSec / 60;
 
-        if(playTimeMin < 5){
+        if(playTimeMin < 3){
             HP = DefaultHP;
             return;
         }
+        if(playTimeMin < 7){
+            HP = DefaultHP * 1.5f;
+            return;
+        }
         if(playTimeMin < 10){
-            HP = DefaultHP * 2;
+            HP = DefaultHP * 2f;
             return;
         }
         if(playTimeMin < 15){
-            HP = DefaultHP * 3;
-            return;
-        }
-        if(playTimeMin < 20){
-            HP = DefaultHP * 5;
+            HP = DefaultHP * 2.5f;
             return;
         }
     }
 
-    private void Update() {
-        if(isDie){
-            return;
-        }
+    private void FixedUpdate() {
+        if(isDie) return;
+
         FollowTarget();
     }
 
@@ -79,7 +74,7 @@ public class EnemyCtrl : MonoBehaviour
         Invoke("Disable", 1f);
     }
 
-    private void Disable(){
+    protected void Disable(){
         GameManager.Instance.enemyDeathCount++;
         //경험치 80%확률
         float percent = Random.Range(0,1f);
@@ -99,7 +94,7 @@ public class EnemyCtrl : MonoBehaviour
     IEnumerator GetDistance(){
         while(true){
             distance = Vector3.Distance(player.transform.position, this.transform.position);
-            if(distance >= 40f){
+            if(distance >= 45f){
                 this.gameObject.SetActive(false);
             }
             yield return new WaitForSeconds(4f);

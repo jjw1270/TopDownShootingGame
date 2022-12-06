@@ -40,7 +40,7 @@ public class PlayerSkillCtrl : MonoBehaviour
         while(true){
             yield return new WaitForSeconds(1f);
             Skill_IceSpear(level_iceSpear);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
     }
     IEnumerator ActiveSkill_SparkleBall(){
@@ -65,7 +65,7 @@ public class PlayerSkillCtrl : MonoBehaviour
     }
     IEnumerator ActiveSkill_PunchHeavy(){
         while(true){
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.5f);
             Skill_PunchHeavy(level_punchHeavy);
         }
     }
@@ -230,7 +230,7 @@ public class PlayerSkillCtrl : MonoBehaviour
         if(skillLevel == 0) return;
 
         Vector3 punchScale = new Vector3(2f, 2f, skillLevel);
-        Vector3 colliderCenter = new Vector3(0, 0, skillLevel*0.7f);
+        Vector3 colliderCenter = new Vector3(0, 0, skillLevel*0.5f);
         GameObject punchHeavy = ObjectPooler.SpawnFromPool(PunchHeavy, SP_forward.position, this.transform.rotation);
         punchHeavy.transform.localScale = punchScale;
         BoxCollider col = punchHeavy.GetComponent<BoxCollider>();
