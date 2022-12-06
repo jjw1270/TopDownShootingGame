@@ -110,5 +110,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb711d1ee9344a84a8a91240278a6eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableSec: 90
+  disableSec: 70
   acceleration: 0.3

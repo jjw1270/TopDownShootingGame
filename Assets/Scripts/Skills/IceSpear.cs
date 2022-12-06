@@ -16,7 +16,7 @@ public class IceSpear : SkillBase
             isAwake = true;
             return;
         }
-        SoundManager.Instance.PlaySFXSound(enableSound, 1f/GameManager.Instance.skillCtrl.level_iceSpear);
+        SoundManager.Instance.PlaySFXSound(enableSound, 1f/GameManager.Instance.playerSkillCtrl.level_iceSpear);
     }
 
     private void FixedUpdate()

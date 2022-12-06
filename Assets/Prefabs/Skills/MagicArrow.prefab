@@ -9570,7 +9570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableSec: 3
-  defaultDamage: 25
+  defaultDamage: 60
   speed: 8
 --- !u!1 &4542218786427006249
 GameObject:

@@ -27,4 +27,12 @@ public class EXPCtrl : DisableAfterSec
             velocity = 0.0f;
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.transform.CompareTag("Player")){
+            Debug.Log("A");
+            GameManager.Instance.playerLevelCtrl.GetExp();
+            this.gameObject.SetActive(false);
+        }
+    }
 }

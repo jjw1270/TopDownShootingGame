@@ -26,7 +26,7 @@ public class PunchHeavy : SkillBase
     }
 
     private void FixedUpdate() {
-        this.transform.position = GameManager.Instance.skillCtrl.SP_forward.transform.position;
+        this.transform.position = GameManager.Instance.playerSkillCtrl.SP_forward.transform.position;
     }
 
     public override void HitEffect(){

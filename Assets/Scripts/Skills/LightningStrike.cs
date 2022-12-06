@@ -15,14 +15,13 @@ public class LightningStrike : SkillBase
             return;
         }
 
-        SoundManager.Instance.PlaySFXSound(enableSound, 0.3f/GameManager.Instance.skillCtrl.level_lightningStrike);
+        SoundManager.Instance.PlaySFXSound(enableSound, 0.3f/GameManager.Instance.playerSkillCtrl.level_lightningStrike);
     }
 
     protected override void OnTriggerEnter(Collider other) {
         base.OnTriggerEnter(other);
         
         HitEffect();
-        this.gameObject.SetActive(false);
     }
 
     public override void HitEffect(){
